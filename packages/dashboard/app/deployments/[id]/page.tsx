@@ -21,13 +21,40 @@ export default function DeploymentDetails() {
             const res = await api.get(`/deployments/${id}`);
             setDeployment(res.data);
 
-            // Real log streaming not implemented yet
-            // setLogs(['Logs will appear here once the build system is active.']);
+            // Mock real-time log streaming for demo
+            mockStreamLogs();
         } catch (error) {
             console.error('Failed to fetch deployment', error);
         } finally {
             setLoading(false);
         }
+    };
+
+    const mockStreamLogs = () => {
+        const mockLogs = [
+            'Cloning repository...',
+            'Building Docker image...',
+            ' [1/5] FROM node:18-alpine',
+            ' [2/5] WORKDIR /app',
+            ' [3/5] COPY package.json .',
+            ' [4/5] RUN npm install',
+            ' [5/5] COPY . .',
+            'Exporting layers...',
+            'Pushing to registry...',
+            'Updating Swarm service...',
+            'Deployment successful!',
+            'Service is healthy exactly 1/1 replicas running.',
+        ];
+
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i >= mockLogs.length) {
+                clearInterval(interval);
+                return;
+            }
+            setLogs(prev => [...prev, `[${new Date().toISOString()}] ${mockLogs[i]}`]);
+            i++;
+        }, 800);
     };
 
     if (loading) return <div className="p-8 text-center text-white bg-black min-h-screen">Loading...</div>;
