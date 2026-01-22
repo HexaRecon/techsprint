@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { api } from '../../lib/api';
-import { Deployment } from '../../types';
+import { api } from '@/lib/api';
+import { Deployment } from '@/types';
 import { useParams } from 'next/navigation';
 import { Terminal, ArrowLeft } from 'lucide-react';
 

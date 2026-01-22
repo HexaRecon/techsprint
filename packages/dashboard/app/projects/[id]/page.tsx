@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { api } from '../../lib/api';
-import { Project, Deployment } from '../../types';
+import { api } from '@/lib/api';
+import { Project, Deployment } from '@/types';
 import { useParams } from 'next/navigation';
 import { Clock, GitCommit, CheckCircle, XCircle, PlayCircle, StopCircle, Loader2 } from 'lucide-react';
 import Link from 'next/link';

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { api } from '../../lib/api';
+import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 import { Github, Wand2, Loader2, ArrowRight, Check } from 'lucide-react';
 import Link from 'next/link';
