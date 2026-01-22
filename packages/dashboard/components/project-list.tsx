@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { api } from '../lib/api';
+import Link from 'next/link';
 import { Project } from '../types';
 import { Plus, Github } from 'lucide-react';
-import Link from 'next/link';
 
 export function ProjectList() {
     const [projects, setProjects] = useState<Project[]>([]);
@@ -33,12 +33,10 @@ export function ProjectList() {
         <div className="p-8">
             <div className="flex items-center justify-between mb-8">
                 <h2 className="text-3xl font-bold text-gray-800">Projects</h2>
-                <Link href="/projects/new">
-                    <button className="flex items-center px-4 py-2 text-white bg-black rounded-md hover:bg-gray-800">
-                        <Plus className="w-5 h-5 mr-2" />
-                        New Project
-                    </button>
-                </Link>
+                <button className="flex items-center px-4 py-2 text-white bg-black rounded-md hover:bg-gray-800">
+                    <Plus className="w-5 h-5 mr-2" />
+                    New Project
+                </button>
             </div>
 
             {projects.length === 0 ? (
@@ -51,9 +49,9 @@ export function ProjectList() {
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {projects.map((project) => (
                         <Link href={`/projects/${project.id}`} key={project.id} className="block group">
-                            <div className="p-6 bg-white border rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                                <h3 className="text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors">{project.name}</h3>
-                                <p className="text-sm text-gray-500 mb-4">{project.gitRepository} ({project.branch})</p>
+                            <div className="p-6 bg-white border rounded-lg shadow-sm group-hover:shadow-md transition-all group-hover:border-blue-200">
+                                <h3 className="text-xl font-semibold mb-2 text-gray-800 group-hover:text-blue-600">{project.name}</h3>
+                                <p className="text-sm text-gray-500 mb-4 font-mono truncate">{project.gitRepository}</p>
                                 <div className="flex justify-between items-center text-sm text-gray-400">
                                     <span>{new Date(project.createdAt).toLocaleDateString()}</span>
                                     <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Ready</span>

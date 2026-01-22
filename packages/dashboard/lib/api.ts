@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_URL = 'http://localhost:3001';
 
 export const api = axios.create({
     baseURL: API_URL,
@@ -32,4 +32,19 @@ export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.location.reload();
+};
+
+export const getProjects = async () => {
+    const res = await api.get('/projects');
+    return res.data;
+};
+
+export const getProject = async (id: string) => {
+    const res = await api.get(`/projects/${id}`);
+    return res.data;
+};
+
+export const triggerDeployment = async (projectId: string) => {
+    const res = await api.post(`/deployments/${projectId}/trigger`);
+    return res.data;
 };

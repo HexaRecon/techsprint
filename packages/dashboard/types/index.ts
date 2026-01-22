@@ -15,7 +15,6 @@ export interface Project {
 
 export interface Deployment {
     id: string;
-    projectId: string; // Added field
     status: 'QUEUED' | 'BUILDING' | 'DEPLOYING' | 'RUNNING' | 'FAILED' | 'STOPPED';
     commitHash: string;
     commitMessage?: string;
